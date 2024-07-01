@@ -1,0 +1,10 @@
+**/.git
+**/bin
+**/obj
+**/node_modules
+*.md
+.env
+Dockerfile*
+docker-compose.yml
+docker-compose.override.yml
+GERSEMI.Client/node_modules/

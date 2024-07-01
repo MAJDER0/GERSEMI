@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"  
+    volumes:
+      - mssql-data:/var/opt/mssql  
+    networks:
+      - gersemi-network
+
+  api:
+    image: "${DOCKERHUB_USERNAME}/gersemi-api:${DOCKER_TAG}"
+    ports:
+      - "7098:7098"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=GersemiDb;User Id=sa;Password=${SA_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - gersemi-network
+
+  client:
+    image: "${DOCKERHUB_USERNAME}/gersemi-client:${DOCKER_TAG}"
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+    networks:
+      - gersemi-network
+
+volumes:
+  mssql-data:
+
+networks:
+  gersemi-network:
+    driver: bridge
