@@ -82,7 +82,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push-docker-images
     timeout-minutes: 120  
-    environment: Production  
     env:
       DEPLOY_BRANCH: 'main'
       DOCKER_TAG: 'prod'
