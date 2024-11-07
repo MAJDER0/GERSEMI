@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    networks:
+      - gersemi-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Presentation/Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/bin
+      - /app/obj
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: "Server=db;Database=GersemiDb;User Id=sa;Password=${DB_PASSWORD};"
+    depends_on:
+      - db
+    networks:
+      - gersemi-network
+
+  client:
+    build:
+      context: ./ClientApp/gersemi-client
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./ClientApp/gersemi-client:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+    networks:
+      - gersemi-network
+
+networks:
+  gersemi-network:
+    driver: bridge
+
+volumes:
+  mssql-data:

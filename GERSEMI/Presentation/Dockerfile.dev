@@ -1,0 +1,23 @@
+# Use the .NET SDK image
+FROM mcr.microsoft.com/dotnet/sdk:6.0
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the csproj and restore dependencies
+COPY Presentation/*.csproj ./Presentation/
+COPY Application/*.csproj ./Application/
+COPY Infrastructure/*.csproj ./Infrastructure/
+COPY Domain/*.csproj ./Domain/
+COPY *.sln ./
+
+RUN dotnet restore
+
+# Copy the rest of the source code
+COPY . .
+
+# Expose the port
+EXPOSE 5000
+
+# Set the entry point to use dotnet watch for hot-reloading
+CMD ["dotnet", "watch", "--project", "Presentation", "run", "--no-launch-profile", "--urls", "http://0.0.0.0:5000"]
