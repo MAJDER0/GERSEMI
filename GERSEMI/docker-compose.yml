@@ -16,16 +16,12 @@ services:
   api:
     build:
       context: .
-      dockerfile: Presentation/Dockerfile.dev
-    volumes:
-      - .:/app
-      - /app/bin
-      - /app/obj
+      dockerfile: Presentation/Dockerfile
     ports:
-      - "5000:5000"
+      - "5000:80"
     environment:
-      ASPNETCORE_ENVIRONMENT: "Development"
-      ConnectionStrings__DefaultConnection: "Server=db;Database=GersemiDb;User Id=sa;Password=${DB_PASSWORD};"
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=GersemiDb;User Id=sa;Password=${SA_PASSWORD};
     depends_on:
       - db
     networks:
@@ -33,23 +29,23 @@ services:
 
   client:
     build:
-      context: ./ClientApp/gersemi-client
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ./ClientApp/gersemi-client:/app
-      - /app/node_modules
+      context: ../GERSEMI.Client
+      dockerfile: Dockerfile
     ports:
       - "4200:4200"
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - api
+    volumes:
+      - ../GERSEMI.Client:/app
+      - /app/node_modules
     networks:
       - gersemi-network
+
+volumes:
+  mssql-data:
 
 networks:
   gersemi-network:
     driver: bridge
-
-volumes:
-  mssql-data:

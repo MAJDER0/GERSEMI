@@ -1,30 +1,42 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Configuration.AddEnvironmentVariables();
 
-// Configure CORS
+builder.Services.AddControllers();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
-        builder =>
+        policyBuilder =>
         {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
+            policyBuilder.AllowAnyOrigin()
+                         .AllowAnyMethod()
+                         .AllowAnyHeader();
         });
 });
 
-// Add other services (MediatR, AutoMapper, etc.)
-
 var app = builder.Build();
 
-// Use CORS
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "GERSEMI API V1");
+        c.RoutePrefix = "swagger"; 
+    });
+}
+
 app.UseCors("AllowAllOrigins");
 
-// Configure the HTTP request pipeline.
+app.UseHttpsRedirection();
+
 app.UseAuthorization();
+
 app.MapControllers();
+
+app.MapGet("/", () => "Welcome to the GERSEMI API!");
+
 app.Run();

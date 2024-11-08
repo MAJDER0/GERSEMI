@@ -1,17 +1,10 @@
-# Ignore .git directory
-.git
-
-# Ignore .env files
+**/.git
+**/bin
+**/obj
+**/node_modules
+*.md
 .env
-
-# Ignore Docker files
 Dockerfile*
 docker-compose.yml
-
-# Ignore build outputs
-bin/
-obj/
-
-# Ignore other unnecessary files
-*.md
-*.txt
+docker-compose.override.yml
+GERSEMI.Client/node_modules/

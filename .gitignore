@@ -1,7 +1,7 @@
 # Ignore environment files
 .env
 
-# Ignore build directories
+# Ignore build outputs
 bin/
 obj/
 
@@ -9,16 +9,14 @@ obj/
 *.user
 *.suo
 
-# Ignore Visual Studio cache files
+# Ignore Visual Studio files
 .vs/
 
-# Ignore node_modules (for Node.js projects)
-node_modules/
+# Ignore node_modules
+GERSEMI.Client/node_modules/
 
-# Ignore log files
+# Ignore logs
 *.log
 
 # Ignore Docker override files
 docker-compose.override.yml
-
-# Ignore any other files or directories you don't want to track
