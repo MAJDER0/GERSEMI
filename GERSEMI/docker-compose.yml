@@ -12,6 +12,9 @@ services:
       - gersemi-network
 
   api:
+    build:
+      context: ./Presentation                
+      dockerfile: Dockerfile                
     image: "${DOCKERHUB_USERNAME}/gersemi-api:${DOCKER_TAG}"
     ports:
       - "7098:7098"
@@ -24,6 +27,9 @@ services:
       - gersemi-network
 
   client:
+    build:
+      context: ../GERSEMI.Client             
+      dockerfile: Dockerfile                
     image: "${DOCKERHUB_USERNAME}/gersemi-client:${DOCKER_TAG}"
     ports:
       - "4200:4200"
@@ -33,9 +39,13 @@ services:
       - api
     networks:
       - gersemi-network
+    volumes:
+      - ../GERSEMI.Client:/app      
+      - client_node_modules:/app/node_modules 
 
 volumes:
   mssql-data:
+  client_node_modules:
 
 networks:
   gersemi-network:
