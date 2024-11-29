@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'PrimaryFont';  /* The name you want to use for the font */
+    src: url('/Assets/fonts/HelveticaLight.ttf') format('truetype');
+    font-weight: normal;  /* Adjust according to your font file's weight */
+    font-style: normal;   /* Adjust if the font has italic style */
+  }
+  
+
+body{
+    background-color: theme('colors.primary');
+    font-family: 'PrimaryFont', sans-serif;
+}
+
