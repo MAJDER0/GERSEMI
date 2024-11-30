@@ -1,0 +1,58 @@
+ <nav class="bg-primary shadow-md h-[5.5rem]">
+    <!-- Full width flex container -->
+    <div class="flex items-center justify-between px-4 md:px-8 lg:px-24 py-5 w-full h-full">
+      
+      <!-- Left Section: Menu Icon -->
+      <div class="flex items-center sm:hidden">
+        <img 
+          src="Assets/images/menu_icon.png" 
+          alt="Menu Icon" 
+          class="h-6 w-6 cursor-pointer"
+        />
+      </div>
+
+      <!-- Center Section: Logo -->
+      <div class="absolute left-1/2 transform -translate-x-1/2">
+        <img src="Assets/images/GERSEMI.png" alt="GERSEMI Logo" class="h-8 sm:h-10 md:h-10 lg:h-10">
+      </div>
+
+      <!-- Right Section: Cart -->
+      <div class="flex items-center">
+        <a href="#" class="hover:text-gray-400 flex items-center space-x-2 sm:hidden">
+          <span>Koszyk</span>
+        </a>
+      </div>
+
+      <!-- Full Menu for Larger Screens -->
+      <div class="hidden sm:flex items-center justify-between w-full">
+        <!-- Left: Menu and Search -->
+        <div class="flex items-center space-x-6 md:space-x-12">
+          <button class="text-gray-700 focus:outline-none text-base">
+            <span class="material-icons hover:text-gray-400">Sklep</span>
+          </button>
+          <div class="relative w-32 sm:w-40 md:w-40">
+            <img 
+              src="Assets/images/search_icon.png" 
+              alt="Search Icon" 
+              class="absolute left-2 top-1/2 transform -translate-y-1/2 h-5 w-5"
+            />
+            <input
+              type="text"
+              placeholder="Szukaj..."
+              class="w-28 sm:w-36 md:w-36 h-8 pl-10 pr-4 border border-gray-300 rounded-full focus:ring-1 focus:ring-gray-800 focus:outline-none focus:w-52 transition-all duration-300"
+            />
+          </div>
+        </div>
+
+        <!-- Right: Sign in and Cart -->
+        <div class="flex items-center space-x-6 md:space-x-12">
+          <a href="#" class="hover:text-gray-400 flex items-center space-x-2">
+            <span>Logowanie</span>
+          </a>
+          <a href="#" class="hover:text-gray-400 flex items-center space-x-2">
+            <span>Koszyk</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>

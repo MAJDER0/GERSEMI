@@ -777,6 +777,10 @@ video {
   height: 100%;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .w-1 {
   width: 0.25rem;
 }
@@ -1339,6 +1343,14 @@ body{
 
   .sm\:h-10 {
     height: 2.5rem;
+  }
+
+  .sm\:h-6 {
+    height: 1.5rem;
+  }
+
+  .sm\:h-2 {
+    height: 0.5rem;
   }
 
   .sm\:w-36 {
