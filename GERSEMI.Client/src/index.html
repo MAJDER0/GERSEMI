@@ -10,32 +10,41 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <nav class="bg-primary shadow-md relative">
-    <div class="container mx-auto px-4 py-5 flex items-center justify-between">
+  <nav class="bg-primary shadow-md h-[5.5rem]">
+    <!-- Full width flex container -->
+    <div class="flex items-center justify-between px-8 md:px-8 lg:px-40 py-5 w-full h-full">
       <!-- Left Section: Menu and Search -->
-      <div class="flex items-center space-x-4">
-        <!-- Menu Button -->
-        <button class="text-gray-700 focus:outline-none">
-          <span class="material-icons">menu</span>
+      <div class="flex items-center space-x-6 md:space-x-12">
+        <button class="text-gray-700 focus:outline-none text-base">
+          <span class="material-icons hover:text-gray-400">Sklep</span>
         </button>
-        <!-- Search Bar -->
-        <div class="relative">
+        <div class="relative w-32 sm:w-40 md:w-40">
+          <img 
+            src="Assets/images/search_icon.png" 
+            alt="Search Icon" 
+            class="absolute left-2 top-1/2 transform -translate-y-1/2 h-5 w-5"
+          />
           <input
             type="text"
-            placeholder="Search..."
-            class="w-64 px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-200 focus:outline-none"
+            placeholder="Szukaj..."
+            class="w-28 sm:w-36 md:w-36 h-8 pl-10 pr-4 border border-gray-300 rounded-full focus:ring-1 focus:ring-gray-800 focus:outline-none focus:w-52 transition-all duration-300"
           />
         </div>
       </div>
 
       <!-- Center Section: Logo -->
-      <div class="absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2">
-        <img src="Assets/images/GERSEMI.png" alt="GERSEMI Logo" class="h-10">
+      <div class="absolute left-1/2 transform -translate-x-1/2">
+        <img src="Assets/images/GERSEMI.png" alt="GERSEMI Logo" class="h-8 sm:h-10 md:h-10 lg:h-10">
       </div>
 
-      <!-- Right Section (Empty for now) -->
-      <div>
-        <!-- Placeholder for additional items -->
+      <!-- Right Section: Logowanie and Koszyk -->
+      <div class="flex items-center space-x-6 md:space-x-12">
+        <a href="#" class="hover:text-gray-400 flex items-center space-x-2">
+          <span>Logowanie</span>
+        </a>
+        <a href="#" class="hover:text-gray-400 flex items-center space-x-2">
+          <span>Koszyk</span>
+        </a>
       </div>
     </div>
   </nav>
