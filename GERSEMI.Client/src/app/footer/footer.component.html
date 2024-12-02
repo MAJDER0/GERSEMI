@@ -1,8 +1,8 @@
-<footer class="bg-primary-black absolute bottom-0 w-full text-primary md:h-[20%] h-auto">
-  <div class="flex flex-col md:flex-row justify-between items-center md:items-start px-4 py-6 md:py-12">
+<footer class="bg-primary-black w-full text-primary md:h-[20%] h-auto fixed bottom-0 left-0">
+  <div class="flex flex-col md:flex-row justify-between items-center md:items-start px-4 py-6 md:py-12 h-full">
 
     <!-- Language Section (Left on larger screens) -->
-    <div class="flex order-3 md:order-1 justify-center md:justify-start md:ml-44 md:flex-grow-0 md:flex-shrink-0 md:h-full mb-4 md:mb-0 md:px-4 py-3">
+    <div class="order-3 mb-4 md:hidden flex-1 flex items-center justify-start">
       <button class="text-primary text-sm flex items-center space-x-2">
         <img src="Assets/images/language.png" alt="Language Icon" class="w-4">
         <span class="language">Polski</span>
@@ -11,15 +11,22 @@
 
     <!-- Logo Section (Centered on all screens) -->
     <div class="order-1 md:order-2 mb-4 md:mb-0 text-center md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:h-[20%] md:px-4 md:py-14 py-5">
-      <img src="Assets/images/GERSEMI.png" alt="GERSEMI Logo" class="h-8 sm:h-10 md:h-8 lg:h-8 mx-auto">
+      <img src="Assets/images/GERSEMI_white.png" alt="GERSEMI Logo" class="h-8 sm:h-10 md:h-8 lg:h-8 mx-auto">
     </div>
 
     <!-- Links Section (Right on larger screens) -->
-    <div class="order-2 md:order-3 mb-4 md:mb-0 flex flex-row space-x-6 text-center md:mr-44 md:flex-grow-0 md:flex-shrink-0 md:h-full md:items-start md:px-4 py-3">
+    <div class="order-2 mb-4 md:mb-0 flex flex-row space-x-6 text-center flex-1 items-center justify-center">
+      <a>
+        <button class="text-primary text-sm md:flex items-center space-x-2 hidden">
+          <img src="Assets/images/language.png" alt="Language Icon" class="w-4">
+          <span class="language">Polski</span>
+        </button>
+      </a>
       <a href="#" class="text-primary text-sm hover:text-gray-400">Regulamin</a>
       <a href="#" class="text-primary text-sm hover:text-gray-400">Zwroty</a>
       <a href="#" class="text-primary text-sm hover:text-gray-400">Sociale</a>
       <a href="#" class="text-primary text-sm hover:text-gray-400">Polityka Prywatności</a>
     </div>
+    
   </div>
 </footer>
