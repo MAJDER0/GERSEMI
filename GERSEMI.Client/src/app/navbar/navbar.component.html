@@ -19,7 +19,7 @@
     </div>
 
     <div class="hidden md:flex items-center justify-between w-full transition duration-150">
-      <div class="flex items-center space-x-6 md:space-x-4 lg:space-x-8 custom1168:!space-x-8">
+      <div class="flex items-center space-x-6 md:space-x-4 lg:space-x-6 custom1168:!space-x-4">
         <button 
           class="focus:outline-none text-base h-[5.5rem] sklep-button"
           (mouseenter)="ShowSubNav('block'); toggleMouseOverSklepButton(true)" 
@@ -57,9 +57,9 @@
   (mouseenter)="leftButton(false); ShowSubNav('block'); toggleMouseOverSklepButton(true);"
   (mouseleave)="hideSubNavOnMouseLeave($event)">
   <div *ngFor="let chunk of chunkArray(items, 3); let i = index">
-    <ul class="space-y-5 p-4">
+    <ul class="space-y-5 p-4 text-sm">
       <li *ngFor="let item of chunk">
-        <a href="#" class="block text-sm text-primary-black">{{ item }}</a>
+        <a href="#" class="block text-primary-black">{{ item }}</a>
       </li>
     </ul>
   </div>
