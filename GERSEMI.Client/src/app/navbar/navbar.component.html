@@ -1,7 +1,6 @@
-<nav class="bg-primary h-[5.5rem] text-primary-black">
+<nav class="bg-primary h-[5.5rem] text-primary-black relative">
   <!-- Full width flex container -->
   <div class="flex items-center justify-between px-4 md:px-8 lg:px-24 py-5 w-full h-full">
-    
     <!-- Left Section: Menu Icon -->
     <div class="flex items-center md:hidden transition duration-150">
       <img 
@@ -18,7 +17,7 @@
 
     <!-- Right Section: Cart -->
     <div class="flex items-center md:hidden transition duration-150">
-      <a href="#" class="hover:text-gray-400 flex items-center space-x-2">
+      <a href="#" class="flex items-center space-x-2">
         <span>Koszyk</span>
       </a>
     </div>
@@ -27,10 +26,14 @@
     <div class="hidden md:flex items-center justify-between w-full transition duration-150">
       <!-- Left: Menu and Search -->
       <div class="flex items-center space-x-6 md:space-x-12">
-
-          <button class="focus:outline-none text-base">
-            <span class="material-icons hover:text-gray-400">Sklep</span>
-          </button>
+        <!-- Button -->
+        <button 
+          class="focus:outline-none text-base h-[5.5rem] sklep-button"
+          (mouseenter)="ShowSubNav('block'); toggleMouseOverSklepButton(true)" 
+          (mouseleave)="leftButton(true); ShowSubNav('hidden');  toggleMouseOverSklepButton(false)"
+        >
+          <span class="material-icons p-2">Sklep</span>
+        </button>
 
         <div class="relative w-32 sm:w-40 md:w-40">
           <img 
@@ -48,16 +51,20 @@
 
       <!-- Right: Sign in and Cart -->
       <div class="flex items-center space-x-6 md:space-x-12">
-        <a href="#" class="hover:text-gray-400 flex items-center space-x-2">
+        <a href="#" class="flex items-center space-x-2">
           <span>Logowanie</span>
         </a>
-        <a href="#" class="hover:text-gray-400 flex items-center space-x-2">
+        <a href="#" class="flex items-center space-x-2">
           <span>Koszyk</span>
         </a>
       </div>
     </div>
   </div>
-  <div class="bg-yellow-300 hidden">pop up</div>
+
+  <div id="subNav" [ngClass]="SubNavState" class="p-4" 
+  (mouseenter)="leftButton(false); ShowSubNav('block');toggleMouseOverSklepButton(true);" 
+  (mouseleave)="hideSubNavOnMouseLeave($event)">
+    nothing here for now
+  </div>
+
 </nav>
-
-
