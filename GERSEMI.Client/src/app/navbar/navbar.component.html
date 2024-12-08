@@ -1,7 +1,5 @@
 <nav class="bg-primary h-[5.5rem] text-primary-black relative">
-  <!-- Full width flex container -->
   <div class="flex items-center justify-between px-4 md:px-8 lg:px-24 py-5 w-full h-full">
-    <!-- Left Section: Menu Icon -->
     <div class="flex items-center md:hidden transition duration-150">
       <img 
         src="Assets/images/menu_icon.png" 
@@ -10,29 +8,24 @@
       />
     </div>
 
-    <!-- Center Section: Logo -->
     <div class="absolute left-1/2 transform -translate-x-1/2 transition duration-150">
       <img src="Assets/images/GERSEMII.png" alt="GERSEMI Logo" class="h-8 sm:h-10 md:h-10 lg:h-10">
     </div>
 
-    <!-- Right Section: Cart -->
     <div class="flex items-center md:hidden transition duration-150">
       <a href="#" class="flex items-center space-x-2">
         <span>Koszyk</span>
       </a>
     </div>
 
-    <!-- Full Menu for Larger Screens -->
     <div class="hidden md:flex items-center justify-between w-full transition duration-150">
-      <!-- Left: Menu and Search -->
       <div class="flex items-center space-x-6 md:space-x-12">
-        <!-- Button -->
         <button 
-          class="focus:outline-none text-base h-[5.5rem] sklep-button"
+          class="focus:outline-none text-base h-[5.5rem] bg-red-500 sklep-button"
           (mouseenter)="ShowSubNav('block'); toggleMouseOverSklepButton(true)" 
           (mouseleave)="leftButton(true); ShowSubNav('hidden');  toggleMouseOverSklepButton(false)"
         >
-          <span class="material-icons p-2">Sklep</span>
+          <span class="material-icons md:pl-2 md:pr-2 custom868:pl-4 custom868:pr-4 lg:pl-8 lg:pr-8">Sklep</span>
         </button>
 
         <div class="relative w-32 sm:w-40 md:w-40">
@@ -49,7 +42,6 @@
         </div>
       </div>
 
-      <!-- Right: Sign in and Cart -->
       <div class="flex items-center space-x-6 md:space-x-12">
         <a href="#" class="flex items-center space-x-2">
           <span>Logowanie</span>
@@ -61,10 +53,15 @@
     </div>
   </div>
 
-  <div id="subNav" [ngClass]="SubNavState" class="p-4" 
-  (mouseenter)="leftButton(false); ShowSubNav('block');toggleMouseOverSklepButton(true);" 
+  <div id="subNav" [ngClass]="SubNavState" class="p-4 bg-white shadow-lg rounded-lg flex space-x-4"
+  (mouseenter)="leftButton(false); ShowSubNav('block'); toggleMouseOverSklepButton(true);"
   (mouseleave)="hideSubNavOnMouseLeave($event)">
-    nothing here for now
+  <div *ngFor="let chunk of chunkArray(items, 3); let i = index">
+    <ul class="space-y-5 p-4">
+      <li *ngFor="let item of chunk">
+        <a href="#" class="block text-sm text-primary-black">{{ item }}</a>
+      </li>
+    </ul>
   </div>
-
+</div>
 </nav>

@@ -9,6 +9,7 @@ module.exports = {
       },
       screens: {
         'custom950': '950px',
+        'custom868': '868px',
       },
     },
   },

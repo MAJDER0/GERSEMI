@@ -12,6 +12,15 @@ export class NavbarComponent {
   SubNavState: string = 'hidden';
   isMouseOverSklepButton: boolean = false;
   leftButtonArea : boolean = false;
+   items: string[] = ['Wszystkie', 'Bluzy', 'Koszulki', 'Wyprzedaż'];
+
+   chunkArray(arr: string[], size: number): string[][] {
+    const results: string[][] = [];
+    for (let i = 0; i < arr.length; i += size) {
+      results.push(arr.slice(i, i + size));
+    }
+    return results;
+  }
 
   leftButton(left:boolean): void {
     this.leftButtonArea = left;
@@ -30,7 +39,6 @@ export class NavbarComponent {
 
   hideSubNavOnMouseLeave(event: MouseEvent): void {
     const target = event.relatedTarget as HTMLElement;
-    // Check if the mouse leaves the Sklep button or subNav
     if (!target || (!target.classList.contains('sklep-button') && !target.closest('#subNav'))) {
       this.SubNavState = 'hidden';
       this.isMouseOverSklepButton = false;
