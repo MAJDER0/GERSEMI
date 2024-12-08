@@ -19,13 +19,13 @@
     </div>
 
     <div class="hidden md:flex items-center justify-between w-full transition duration-150">
-      <div class="flex items-center space-x-6 md:space-x-12">
+      <div class="flex items-center space-x-6 md:space-x-4 lg:space-x-8 custom1168:!space-x-8">
         <button 
-          class="focus:outline-none text-base h-[5.5rem] bg-red-500 sklep-button"
+          class="focus:outline-none text-base h-[5.5rem] sklep-button"
           (mouseenter)="ShowSubNav('block'); toggleMouseOverSklepButton(true)" 
           (mouseleave)="leftButton(true); ShowSubNav('hidden');  toggleMouseOverSklepButton(false)"
         >
-          <span class="material-icons md:pl-2 md:pr-2 custom868:pl-4 custom868:pr-4 lg:pl-8 lg:pr-8">Sklep</span>
+        <span class="material-icons md:pl-2 md:pr-2 custom868:pl-4 custom868:pr-4 lg:pl-4 lg:pr-4 custom1168:!pl-8 custom1168:!pr-8">Sklep</span>
         </button>
 
         <div class="relative w-32 sm:w-40 md:w-40">
@@ -37,7 +37,7 @@
           <input
             type="text"
             placeholder="Szukaj..."
-            class="w-28 sm:w-36 md:w-36 custom950:focus:w-52 h-8 pl-10 pr-4 border border-gray-500 rounded-full focus:ring-1 focus:ring-primary-black focus:outline-none transition-all duration-150"
+            class="w-28 sm:w-36 md:w-36 custom1168:focus:w-52 custom950:focus:w-48 h-8 pl-10 pr-4 border border-gray-500 rounded-full focus:ring-1 focus:ring-primary-black focus:outline-none transition-all duration-150"
           />
         </div>
       </div>
