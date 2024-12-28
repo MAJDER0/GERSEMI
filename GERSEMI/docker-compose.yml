@@ -1,26 +1,29 @@
+version: "3.8"
+
 services:
   db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: postgres:latest
     environment:
-      SA_PASSWORD: "${SA_PASSWORD}"
-      ACCEPT_EULA: "Y"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "GersemiDb"
     ports:
-      - "1433:1433"  
+      - "5432:5432"
     volumes:
-      - mssql-data:/var/opt/mssql  
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - gersemi-network
 
   api:
     build:
-      context: ./Presentation                
-      dockerfile: Dockerfile                
+      context: .
+      dockerfile: Presentation/Dockerfile
     image: "${DOCKERHUB_USERNAME}/gersemi-api:${DOCKER_TAG}"
     ports:
       - "7098:7098"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Server=db;Database=GersemiDb;User Id=sa;Password=${SA_PASSWORD}
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=GersemiDb;Username=postgres;Password=${DB_PASSWORD};Port=5432
     depends_on:
       - db
     networks:
@@ -28,24 +31,26 @@ services:
 
   client:
     build:
-      context: ../GERSEMI.Client             
-      dockerfile: Dockerfile                
+      context: ../GERSEMI.Client
+      dockerfile: Dockerfile
     image: "${DOCKERHUB_USERNAME}/gersemi-client:${DOCKER_TAG}"
     ports:
       - "4200:4200"
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+      - NPM_CONFIG_OPTIONAL=true
     depends_on:
       - api
     networks:
       - gersemi-network
     volumes:
-      - ../GERSEMI.Client:/app      
-      - client_node_modules:/app/node_modules 
+      - ../GERSEMI.Client:/app
+      - client_node_modules:/app/node_modules  
 
 volumes:
-  mssql-data:
-  client_node_modules:
+  postgres-data:
+  client_node_modules:  
 
 networks:
   gersemi-network:
