@@ -34,7 +34,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS final
 WORKDIR /app
 
 # 4.1. Copy Source from Build Stage
-COPY --from=build /src /app
+COPY . .
 
 # 4.3. Entrypoint for Hot Reload
 ENTRYPOINT ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:7098"]
