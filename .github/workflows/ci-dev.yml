@@ -106,4 +106,4 @@ jobs:
 
             # Optionally, switch back to the main branch to maintain its state
             git checkout main
-          timeout: 1800
+          timeout-minutes: 120
