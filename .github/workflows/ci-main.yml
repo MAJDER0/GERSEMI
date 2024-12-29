@@ -144,3 +144,4 @@ jobs:
 
             # Rebuild and restart Docker containers
             docker-compose up -d --build
+          timeout-minutes: 120
