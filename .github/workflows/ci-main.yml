@@ -1,5 +1,7 @@
 name: CI/CD Pipeline - Main
 
+environment: Production
+
 on:
   push:
     branches:
@@ -13,7 +15,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 60  
+    timeout-minutes: 60
 
     steps:
       - name: Checkout code
@@ -25,13 +27,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Install dependencies
-        run: dotnet restore GERSEMI/GERSEMI.sln  
+        run: dotnet restore GERSEMI/GERSEMI.sln
 
       - name: Build
-        run: dotnet build GERSEMI/GERSEMI.sln --no-restore --configuration Release  
+        run: dotnet build GERSEMI/GERSEMI.sln --no-restore --configuration Release
 
       - name: Run tests
-        run: dotnet test GERSEMI/GERSEMI.sln --no-build --configuration Release --collect:"XPlat Code Coverage"  
+        run: dotnet test GERSEMI/GERSEMI.sln --no-build --configuration Release --collect:"XPlat Code Coverage"
 
       - name: Publish Test Results
         if: always()
@@ -43,7 +45,7 @@ jobs:
   build-and-push-docker-images:
     runs-on: ubuntu-latest
     needs: build-and-test
-    timeout-minutes: 60  
+    timeout-minutes: 60
 
     steps:
       - name: Checkout code
@@ -81,7 +83,7 @@ jobs:
   deploy-main:
     runs-on: ubuntu-latest
     needs: build-and-push-docker-images
-    timeout-minutes: 120  
+    timeout-minutes: 120
     env:
       DEPLOY_BRANCH: 'main'
       DOCKER_TAG: 'prod'
@@ -116,7 +118,7 @@ jobs:
             # Checkout the deployment branch
             git checkout ${{ env.DEPLOY_BRANCH }} || { echo "Failed to checkout branch ${{ env.DEPLOY_BRANCH }}"; exit 1; }
 
-            # Pull the latest changes for the deployment branch
+            # Pull the latest changes
             git fetch origin ${{ env.DEPLOY_BRANCH }}
             git merge --ff-only origin/${{ env.DEPLOY_BRANCH }} || {
               echo "Fast-forward failed. Resetting branch to origin/${{ env.DEPLOY_BRANCH }}"
@@ -136,7 +138,7 @@ jobs:
             # Navigate to Docker Compose directory
             cd ~/GERSEMI/GERSEMI
 
-            # Stop and remove existing containers to prevent name conflicts
+            # Stop and remove existing containers
             docker-compose down --remove-orphans
 
             # Pull the latest Docker images
