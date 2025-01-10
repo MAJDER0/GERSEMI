@@ -109,7 +109,7 @@ jobs:
 
             set -e
             cd ~/GERSEMI
-
+            
             # Clean repository to avoid conflicts
             git reset --hard HEAD
             git clean -fd
