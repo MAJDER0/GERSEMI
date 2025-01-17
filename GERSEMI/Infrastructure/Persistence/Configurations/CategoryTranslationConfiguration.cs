@@ -13,6 +13,23 @@ namespace Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<CategoryTranslation> builder) 
         {
+            
+            builder.ToTable("Category_Translations");
+
+            builder.HasKey(t => t.Id);
+
+            builder.HasOne(ct => ct.Category)
+                .WithMany(ct => ct.Translations)
+                .HasForeignKey("Category_Id")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Property(ct => ct.LanguageCode)
+                .HasColumnName("language_code")
+                .HasMaxLength(5);
+
+            builder.Property(ct => ct.Name)
+                .HasColumnName("Name")
+                .HasMaxLength(255);
 
         }
     }

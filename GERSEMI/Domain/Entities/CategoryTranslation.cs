@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class CouponTranslation
+    public class CategoryTranslation
     {
         public int Id { get; private set; }
 
-        // Kod języka
+        // Język (np. "pl", "en")
         public string LanguageCode { get; private set; }
+        public string Name { get; private set; }
 
-        // Przetłumaczony opis
-        public string? Description { get; private set; }
+        // Relacja do głównej encji
+        public Category Category { get; private set; }
 
-        public Coupon Coupon { get; private set; }
+        private CategoryTranslation() { }
 
-        private CouponTranslation() { }
-
-        public CouponTranslation(Coupon coupon, string languageCode, string? description)
+        public CategoryTranslation(Category category, string languageCode, string name)
         {
-            Coupon = coupon;
+            Category = category;
             LanguageCode = languageCode;
-            Description = description;
+            Name = name;
         }
     }
 }
