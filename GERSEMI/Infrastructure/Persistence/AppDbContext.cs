@@ -15,8 +15,6 @@ namespace Infrastructure.Persistence
             : base(options)
         {
         }
-
-        
         public DbSet<Product> Products => Set<Product>();
         public DbSet<ProductPrice> ProductPrices => Set<ProductPrice>();
         public DbSet<ProductVariant> ProductVariants => Set<ProductVariant>();
