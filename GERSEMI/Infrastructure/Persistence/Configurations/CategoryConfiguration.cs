@@ -13,20 +13,21 @@ namespace Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.ToTable("Categories");
+            builder.ToTable("categories");
 
             builder.HasKey(c => c.Id);
 
+            // Self-referencing relationship
             builder.HasOne(c => c.Parent)
                 .WithMany(c => c.Children)
-                .HasForeignKey("Parent_Id")
+                .HasForeignKey("parent_id")
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(c => c.CreatedAt)
-                .HasColumnName("Created_At");
+                .HasColumnName("created_at");
 
             builder.Property(c => c.UpdatedAt)
-                .HasColumnName("Updated_At");
+                .HasColumnName("updated_at");
         }
     }
 }

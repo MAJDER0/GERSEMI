@@ -11,7 +11,7 @@ namespace Domain.Entities
         public int Id { get; private set; }
 
         // Sklep, do którego przypisany jest pracownik
-        public Store Store { get; private set; }
+        public Store? Store { get; private set; }
 
         public string FirstName { get; private set; }
         public string LastName { get; private set; }

@@ -14,13 +14,14 @@ namespace Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<CategoryTranslation> builder) 
         {
             
-            builder.ToTable("Category_Translations");
+            builder.ToTable("category_translations");
 
             builder.HasKey(t => t.Id);
 
+            // each CategoryTranslation belongs to exactly one Category
             builder.HasOne(ct => ct.Category)
                 .WithMany(ct => ct.Translations)
-                .HasForeignKey("Category_Id")
+                .HasForeignKey("category_id")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(ct => ct.LanguageCode)
@@ -28,7 +29,7 @@ namespace Infrastructure.Persistence.Configurations
                 .HasMaxLength(5);
 
             builder.Property(ct => ct.Name)
-                .HasColumnName("Name")
+                .HasColumnName("name")
                 .HasMaxLength(255);
 
         }

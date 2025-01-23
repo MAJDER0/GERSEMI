@@ -17,9 +17,13 @@ namespace Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
 
-        // Pracownicy przypisani do tego sklepu
+        // Employees
         private readonly List<Employee> _employees = new();
         public IReadOnlyCollection<Employee> Employees => _employees;
+
+        // Orders
+        private readonly List<Order> _orders = new();
+        public IReadOnlyCollection<Order> Orders => _orders;
 
         private Store() { }
 
@@ -37,5 +41,12 @@ namespace Domain.Entities
             _employees.Add(employee);
             UpdatedAt = DateTime.UtcNow;
         }
+
+        public void AddOrder(Order order)
+        {
+            _orders.Add(order);
+            UpdatedAt = DateTime.UtcNow;
+        }
     }
 }
+

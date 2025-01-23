@@ -14,7 +14,7 @@ namespace Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<ProductVariant> builder)
         {
             //Table name
-            builder.ToTable("Product_Variants");
+            builder.ToTable("product_variants");
 
             //Primary Key
             builder.HasKey(pv => pv.Id);
@@ -24,29 +24,29 @@ namespace Infrastructure.Persistence.Configurations
             
             builder.HasOne(pv => pv.Product)
                 .WithMany(pv => pv.Variants)
-                .HasForeignKey("ProductId")
+                .HasForeignKey("product_id")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(pv => pv.Color)
-                .HasColumnName("Color")
+                .HasColumnName("color")
                 .HasMaxLength(50);
 
-            builder.Property(pv => pv.Color)
-                .HasColumnName("Price")
+            builder.Property(pv => pv.Price)
+                .HasColumnName("price")
                 .HasColumnType("numeric(10,2)");
 
             builder.Property(pv => pv.Stock)
-                .HasColumnName("Stock");
+                .HasColumnName("stock");
 
             builder.Property(pv => pv.SKU)
-                .HasColumnName("SKU")
+                .HasColumnName("sku")
                 .HasMaxLength(100);
 
             builder.Property(pv => pv.CreatedAt)
-                .HasColumnName("Created_At");
+                .HasColumnName("created_at");
 
             builder.Property(pv => pv.UpdatedAt)
-                .HasColumnName("Updated_At");
+                .HasColumnName("updated_at");
         }
     }
 }

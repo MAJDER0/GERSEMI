@@ -29,6 +29,7 @@ namespace Infrastructure.Persistence
         public DbSet<Store> Stores => Set<Store>();
         public DbSet<Coupon> Coupons => Set<Coupon>();
         public DbSet<CouponUsage> CouponUsages => Set<CouponUsage>();
+        public DbSet<CouponTranslation> CouponTranslations => Set<CouponTranslation>();
         public DbSet<Employee> Employees => Set<Employee>();
 
         
@@ -39,6 +40,7 @@ namespace Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new CouponConfiguration());
             modelBuilder.ApplyConfiguration(new CouponUsageConfiguration());
+            modelBuilder.ApplyConfiguration(new CouponTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
